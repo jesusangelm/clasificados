@@ -18,4 +18,14 @@ namespace :parser do
     end
   end
 
+  desc "Verifica y elimina los registros en la BD que no estan en la fuente externa."
+  task :clean_classifieds, [:type] do |t, args|
+    type = args[:type]
+    classifieds_stored_list = Array.new
+    parser = ParserClasificados.new
+    Classified.where(section: type).each { |c| classifieds_stored_list << c.content }
+    removable = classifieds_stored_list - parser.parse_url_generated(type.to_sym)
+    removable.each { |r| Classified.find_by(content: r).destroy }
+  end
+
 end
