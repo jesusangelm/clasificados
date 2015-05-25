@@ -9,7 +9,7 @@ namespace :parser do
   end
 
   desc "Inserta en la BD los clasificados por Tipos: apartment_rent y house_rent."
-  task :store_classifieds, [:type] do |t, args|
+  task :store_classifieds, [:type] => :environment do |t, args|
     type = args[:type]
     parser_apartment_rent = ParserClasificados.new
     classifieds =  parser_apartment_rent.parse_url_generated(type.to_sym)
@@ -19,7 +19,7 @@ namespace :parser do
   end
 
   desc "Verifica y elimina los registros en la BD que no estan en la fuente externa."
-  task :clean_classifieds, [:type] do |t, args|
+  task :clean_classifieds, [:type] => :environment do |t, args|
     type = args[:type]
     classifieds_stored_list = Array.new
     parser = ParserClasificados.new
