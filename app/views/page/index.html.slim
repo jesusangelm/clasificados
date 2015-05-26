@@ -1,2 +1,24 @@
-h1 Pagina de busquedas.
-p ingrese la palabra clave a buscar en los clasificados.
+.row
+  .small-12.columns.text-center
+    h1 Clasificados.
+    p Busca clasificados de alquiler de casa o apartamentos publicados en el periodico El Sol de Margarita.
+
+.row
+  .small-6.columns
+    = form_tag "/", method: :get, remote: true do
+      =label_tag :q, "Buscar por:"
+      =text_field_tag :q
+  .small-6.columns
+    br
+    p = "#{@classifieds.count} Registros en la DB. Actualizado cada 24H"
+
+.row
+  .small-12-column
+    table#table-classifieds
+      thead
+        tr
+          th Clasificado
+          th width="100" Seccion
+          th width="150"Creado el
+      tbody
+        =render partial: "classified", collection:  @classifieds

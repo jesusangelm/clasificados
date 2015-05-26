@@ -1,0 +1,5 @@
+<% if @classifieds.empty? %>
+  $("#table-classifieds tbody").html('<tr><td class="text-center" colspan="3"><b>No se encontraron registros</b></td></tr>')
+<% else %>
+    $("#table-classifieds tbody").html("<%= escape_javascript(render partial: "classified", collection:  @classifieds) %>")
+<% end %>
