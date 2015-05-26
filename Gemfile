@@ -15,6 +15,8 @@ gem 'slim-rails', '~> 3.0.1'
 gem 'pry-rails', '~> 0.3.4', group: :development
 gem 'quiet_assets', '~> 1.1.0', group: :development
 gem 'rails_12factor', group: :production
+gem 'foundation-rails', '~> 5.5.2.1'
+gem 'responders', '~> 2.1.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
