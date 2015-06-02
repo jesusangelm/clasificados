@@ -1,0 +1,10 @@
+= form_for @profile do |f|
+  .row
+    .small-8.columns
+      .row
+        .small-3.columns
+          = f.label :keywords, "Palabras Claves", class: "right inline"
+        .small-9.columns
+          = f.text_field :keywords, placeholder: "Separadas por coma"
+          = f.submit "Guardar", class: "button small round"
+

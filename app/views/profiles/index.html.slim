@@ -1,0 +1,14 @@
+h1 Mis Palabras claves
+p A continuacion las palabras claves a tomar en cuenta para buscar clasificados
+  y enviar notificaciones a tu correo.
+
+- unless @user.profile.nil?
+  ul
+    - @user.profile.keywords.scan(/[a-zA-Z\d]+/).each do |k|
+      li
+        b = k
+
+  = link_to "Editar palabras claves", edit_profile_path(@user)
+- else
+
+  = link_to "Agregar Palabras claves", new_profile_path

@@ -8,7 +8,7 @@ header
       section.top-bar-section
         ul.right
           - if signed_in?
-            li = link_to "Mis palabras claves", "#"
+            li = link_to "Mis palabras claves", profiles_path
             li = link_to "Salir", destroy_user_session_path, method: :delete
             li = link_to current_user.email, edit_user_registration_path
           - else
