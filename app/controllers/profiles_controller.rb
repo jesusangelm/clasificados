@@ -11,13 +11,28 @@ class ProfilesController < ApplicationController
 
   def create
     @profile = current_user.build_profile(profile_params)
-    
+
     if @profile.save
       redirect_to profiles_url, notice: "Palabras claves almacenadas."
     else
       flash["alert"] = "Error, verifique e intente nuevamente"
       redirect_to new_profile_url
     end
+  end
+
+  def edit
+    @profile = current_user.profile
+  end
+
+  def update
+    @profile = current_user.profile
+
+    if @profile.update(profile_params)
+      redirect_to profiles_url, notice: "Palabras claves actualizadas."
+    else
+      flash["alert"] = "Error, verifique e intente nuevamente"
+      redirect_to edit_profile_url
+    end 
   end
 
   private
