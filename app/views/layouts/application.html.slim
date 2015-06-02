@@ -9,27 +9,8 @@ html lang="es"
     = javascript_include_tag "application"
     = csrf_meta_tags
   body
+    = render "layouts/topbar_navigation"
     .row
-      header
-        nav.top-bar data-topbar="" role="navigation"
-          ul.title-area
-            li.name
-              h1 = link_to "Clasificados", root_path
-
-          section.top-bar-section
-            ul.right
-              - if signed_in?
-                li = link_to "Salir", destroy_user_session_path, method: :delete
-                li = link_to current_user.email, edit_user_registration_path
-              - else
-                li = link_to "Entrar", new_user_session_path
-                li = link_to "Registrarse", new_user_registration_path
-
-      .alert-box.info.radius data-alert=""
-        = notice
-        a.close href="#"  &times;
-      .alert-box.warning.radius data-alert=""
-        = alert
-        a.close href="#"  &times;
+      = render "layouts/flash_messages"
       = yield
 

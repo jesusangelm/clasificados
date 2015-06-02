@@ -1,0 +1,4 @@
+- flash.each do |name, msg|
+  .alert-box.radius class=(name == "notice" ? "success" : "alert") data-alert=""
+    = content_tag :div, msg
+    a.close href="#"  &times;

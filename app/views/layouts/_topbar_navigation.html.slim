@@ -1,0 +1,16 @@
+header
+  .contain-to-grid.sticky
+    nav.top-bar data-topbar="" role="navigation"
+      ul.title-area
+        li.name
+          h1 = link_to "Clasificados", root_path
+
+      section.top-bar-section
+        ul.right
+          - if signed_in?
+            li = link_to "Mis palabras claves", "#"
+            li = link_to "Salir", destroy_user_session_path, method: :delete
+            li = link_to current_user.email, edit_user_registration_path
+          - else
+            li = link_to "Entrar", new_user_session_path
+            li = link_to "Registrarse", new_user_registration_path
