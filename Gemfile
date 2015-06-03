@@ -18,6 +18,7 @@ gem 'rails_12factor', group: :production
 gem 'foundation-rails', '~> 5.5.2.1'
 gem 'responders', '~> 2.1.0'
 gem 'devise', '~> 3.5.1'
+gem 'sucker_punch', '~> 1.5.0'
 gem 'dotenv-rails', '~> 2.0.1', group: :development
 
 # Use ActiveModel has_secure_password
