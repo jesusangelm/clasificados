@@ -7,7 +7,7 @@ class Classified < ActiveRecord::Base
     User.all.each do |u|
       u.profile.keywords.scan(/[a-zA-Z\d]+/) do |k|
         if self[:content].include?(k)
-          NotificationMailer.keyword_found(self, u).deliver_later
+          SendEmailJob.new.async.perform(self, u)
           break
         end
       end
