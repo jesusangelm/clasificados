@@ -4,11 +4,15 @@ p A continuacion las palabras claves a tomar en cuenta para buscar clasificados
 
 - unless @user.profile.nil?
   ul
-    - @user.profile.keywords.scan(/[a-zA-Z\d]+/).each do |k|
+    - words_selector_regex(@user.profile.keywords).each do |k|
       li
         b = k
+        ul
+          - classifieds_by_keyword(k).each do |c|
+            li = c.content
 
-  = link_to "Editar palabras claves", edit_profile_path(@user)
+  = link_to "Editar palabras claves", edit_profile_path(@user), class: "button round"
+  = link_to "Eliminar palabras claves", "#", class: "right button round alert"
 - else
 
-  = link_to "Agregar Palabras claves", new_profile_path
+  = link_to "Agregar Palabras claves", new_profile_path, class: "button round"
