@@ -1,8 +1,9 @@
 h1 Mis Palabras claves
-p A continuacion las palabras claves a tomar en cuenta para buscar clasificados
-  y enviar notificaciones a tu correo.
+
 
 - unless @user.profile.nil?
+  p A continuacion las palabras claves a tomar en cuenta para buscar clasificados
+    y enviar notificaciones a tu correo.
   ul
     - words_selector_regex(@user.profile.keywords).each do |k|
       li
@@ -14,5 +15,6 @@ p A continuacion las palabras claves a tomar en cuenta para buscar clasificados
   = link_to "Editar palabras claves", edit_profile_path(@user), class: "button round"
   = link_to "Eliminar palabras claves", "#", class: "right button round alert"
 - else
+  p No tienes palabras claves registradas...
 
   = link_to "Agregar Palabras claves", new_profile_path, class: "button round"
