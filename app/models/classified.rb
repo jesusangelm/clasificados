@@ -6,7 +6,7 @@ class Classified < ActiveRecord::Base
   def find_matched_keywords
     User.all.each do |u|
       u.profile.keywords.scan(/[a-zA-Z\d]+/) do |k|
-        if self[:content].include?(k)
+        if self[:content].downcase.include?(k)
           SendEmailJob.new.async.perform(self, u)
           break
         end
