@@ -18,8 +18,10 @@ gem 'rails_12factor', group: :production
 gem 'foundation-rails', '~> 5.5.2.1'
 gem 'responders', '~> 2.1.0'
 gem 'devise', '~> 3.5.1'
-gem 'sucker_punch', '~> 1.5.0'
+gem 'sidekiq', '~> 3.3.4'
+gem 'sinatra', :require => nil
 gem 'dotenv-rails', '~> 2.0.1', group: :development
+gem 'foreman', '~> 0.78.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
