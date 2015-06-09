@@ -7,7 +7,7 @@ class Classified < ActiveRecord::Base
     User.all.each do |u|
       u.profile.keywords.scan(/[a-zA-Z\d]+/) do |k|
         if self[:content].downcase.include?(k)
-          SendEmailJob.new.async.perform(self, u)
+          SendEmailJob.set(wait: 1.minute).perform_later(self, u)
           break
         end
       end
