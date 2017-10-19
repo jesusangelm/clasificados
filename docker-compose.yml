@@ -1,0 +1,54 @@
+version: "3"  
+services:  
+
+  postgres:  
+    image: postgres:alpine  
+    volumes:  
+      - pg-clasificados:/var/lib/postgresql/data  
+    environment:  
+      postgres_user: 'clasificados_user'  
+      postgres_password: 'cl4s1f1c42'  
+    ports:  
+      - "5432:5432"  
+
+  redis:  
+    image: redis:alpine  
+    volumes:  
+      - redis-clasificados:/data  
+    ports:  
+      - "6379:6379"  
+
+  web:  
+    build: .  
+    command: rails s -p 3000 -b '0.0.0.0'  
+    volumes:  
+      - .:/app  
+    ports:  
+      - "3000:3000"  
+    links:  
+      - postgres
+      - redis
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - redis
+
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq -q default -q mailers
+    links:
+      - postgres
+      - redis
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - redis
+
+volumes:
+  pg-clasificados:
+  redis-clasificados:
+
